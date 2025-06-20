@@ -31,6 +31,9 @@ class DelightToastBar {
   /// Info on each snackbar
   late final SnackBarInfo info;
 
+  /// Margin from edge of the screen to the snackbar
+  final double snackbarMarginFromEdge;
+
   /// Initialise Delight Toastbar with required parameters
   DelightToastBar(
       {this.snackbarDuration = const Duration(milliseconds: 5000),
@@ -38,9 +41,9 @@ class DelightToastBar {
       required this.builder,
       this.animationDuration = const Duration(milliseconds: 700),
       this.autoDismiss = false,
-      this.animationCurve})
-      : assert(
-            snackbarDuration.inMilliseconds > animationDuration.inMilliseconds);
+      this.animationCurve,
+      this.snackbarMarginFromEdge = 70})
+      : assert(snackbarDuration.inMilliseconds > animationDuration.inMilliseconds);
 
   /// Remove individual toasbars on dismiss
   void remove() {
@@ -61,6 +64,7 @@ class DelightToastBar {
         animationDuration: animationDuration,
         snackbarPosition: position,
         animationCurve: animationCurve,
+        snackbarMarginFromEdge: snackbarMarginFromEdge,
         autoDismiss: autoDismiss,
         getPosition: () => calculatePosition(_toastBars, this),
         getscaleFactor: () => calculateScaleFactor(_toastBars, this),

@@ -9,6 +9,7 @@ class RawDelightToast extends StatefulWidget {
   final Curve? animationCurve;
   final bool autoDismiss;
   final DelightSnackbarPosition snackbarPosition;
+  final double snackbarMarginFromEdge;
   final Function() getscaleFactor;
   final Function() getPosition;
 
@@ -23,7 +24,8 @@ class RawDelightToast extends StatefulWidget {
       this.autoDismiss = true,
       required this.getPosition,
       this.animationCurve,
-      required this.getscaleFactor});
+      required this.getscaleFactor,
+      this.snackbarMarginFromEdge = 70});
 
   @override
   State<RawDelightToast> createState() => RawDelightToastState();
@@ -81,10 +83,10 @@ class RawDelightToastState extends State<RawDelightToast> {
       key: positionedKey,
       curve: Curves.easeOutBack,
       top: widget.snackbarPosition == DelightSnackbarPosition.top
-          ? widget.getPosition() + 70
+          ? widget.getPosition() + widget.snackbarMarginFromEdge
           : null,
       bottom: widget.snackbarPosition == DelightSnackbarPosition.bottom
-          ? widget.getPosition() + 70
+          ? widget.getPosition() + widget.snackbarMarginFromEdge
           : null,
       left: 0,
       right: 0,
